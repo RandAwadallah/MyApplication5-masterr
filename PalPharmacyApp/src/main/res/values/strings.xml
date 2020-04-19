@@ -2,6 +2,7 @@
     <string name="app_name">Pal-Pharmacy</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">close navigation drawer</string>
+    <string name="language">Change Language</string>
 
 
     <string-array name="location">

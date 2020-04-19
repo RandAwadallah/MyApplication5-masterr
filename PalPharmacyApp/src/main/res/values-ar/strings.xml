@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Pal-Pharmacy</string>
+    <string name="navigation_drawer_open">افتح درج التنقل</string>
+    <string name="navigation_drawer_close">اغلق درج التنقل</string>
+    <string name="language">تغير اللغة</string>
+</resources>

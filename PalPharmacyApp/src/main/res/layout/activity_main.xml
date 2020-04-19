@@ -26,12 +26,14 @@
                 android:background="@color/colorBlue"
                 android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-                android:elevation="4dp"/>
+                android:elevation="4dp"
+                />
 
             <FrameLayout
                 android:id="@+id/fragment_container"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
+
 
                 <EditText
                     android:id="@+id/edittext"
@@ -42,7 +44,6 @@
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="16dp"
                     android:layout_marginRight="16dp"
-                    android:background="@drawable/search_style"
                     android:drawableLeft="@drawable/ic_search_black_24dp"
                     android:drawablePadding="8dp"
                     android:hint="Type here to search"

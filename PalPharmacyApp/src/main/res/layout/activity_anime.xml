@@ -54,7 +54,7 @@
                         android:id="@+id/aa_anime_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Anime Title"
+                        android:text=" Address:"
                         android:textColor="@color/colorBlue"
                         android:textSize="18sp"
                         android:textStyle="bold" />
@@ -64,7 +64,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
-                        android:text="Category" />
+                        android:text="Phone_Number" />
 
 
                     <TextView
@@ -72,11 +72,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:background="@drawable/rating_background"
-                        android:drawableLeft="@drawable/ic_star_black_24dp"
                         android:paddingRight="5dp"
-                        android:text="0.0"
-                        android:textColor="#fff"
+                        android:text="Closing_Time"
+                        android:textColor="#C62121"
                         android:textSize="15sp"
                         android:textStyle="bold" />
 
@@ -85,7 +83,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
-                        android:text="Studio" />
+                        android:text="Opening_Time" />
 
 
                 </LinearLayout>

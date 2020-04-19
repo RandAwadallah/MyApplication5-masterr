@@ -1,12 +1,19 @@
 package com.app.palpharmacy.activities;
 
+import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -18,7 +25,9 @@ import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -38,6 +47,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 private static int splashtime= 4000;
@@ -46,42 +56,105 @@ private static int splashtime= 4000;
     private RequestQueue requestQueue ;
     private List<Pharmacy> lstPharmacy;
     private RecyclerView recyclerView ;
+    private DrawerLayout mDrawer;
 
-private DrawerLayout drawer;
+
+    private DrawerLayout drawer;
     RecyclerViewAdapter myadapter;
 EditText searchinput;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+       // loadlocale();
         setContentView(R.layout.activity_main);
+       /* ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle(getResources().getString(R.string.app_name));*/
 
         Toolbar toolbar= findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         drawer= findViewById(R.id.draw_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,drawer,toolbar,R.string.navigation_drawer_open,R.string.navigation_drawer_close);
-drawer.addDrawerListener(toggle);
-toggle.syncState();
-searchinput= findViewById(R.id.edittext);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,drawer,
+                toolbar,R.string.navigation_drawer_open,R.string.navigation_drawer_close);
+                    drawer.addDrawerListener(toggle);
+                       toggle.syncState();
+                         searchinput= findViewById(R.id.edittext);
 
         lstPharmacy = new ArrayList<>() ;
         recyclerView = findViewById(R.id.recyclerviewid);
         jsonrequest();
 
+       // Fragment frag = new Fragment();
+      //  getSupportFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.draw_layout,frag).commit();
+
+
+       /* Button language =findViewById(R.id.nav_language);
+        language.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showlanguageDiloge();
+            }
+        }); */
+
 
 
     }
+   /* private void showlanguageDiloge (){
+        final String [] listitems ={ "English", "Arabic"};
+        AlertDialog.Builder mBuilder = new AlertDialog.Builder (MainActivity.this);
+        mBuilder.setTitle("Choose Language...");
+        mBuilder.setSingleChoiceItems(listitems, -1, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                if (   i == 0) {
+                    setlocale ("en");
+                    recreate();
+                }
+                else  if (   i == 1 ) {
+                    setlocale ("ar");
+                    recreate();
+                }
+                dialogInterface.dismiss();
+
+            }
+        });
+      AlertDialog mdialog = mBuilder.create();
+      mdialog.show();
+    }
+
+    /* void setlocale(String lang) {
+        Locale locale = new Locale( lang);
+        Locale.setDefault(locale);
+        Configuration config = new Configuration();
+        config.locale = locale;
+       getBaseContext().getResources().updateConfiguration(config, getBaseContext() ,getResources().getDisplayMetrics());
+        SharedPreferences.Editor editor = getSharedPreferences("setting", MODE_PRIVATE).edit();
+        editor.putString("My Lang" , lang);
+        editor.apply();
+    }
+public void loadlocale(){
+        SharedPreferences prefs = getSharedPreferences("setting", Activity.MODE_PRIVATE);
+        String language =prefs.getString("My Lang", "");
+        setlocale(language); */
+
 
 
     @Override
-    public void onBackPressed() {
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // The action bar home/up action should open or close the drawer.
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                mDrawer.openDrawer(GravityCompat.START);
+                return true;
         }
+
+        return super.onOptionsItemSelected(item);
     }
+
+
+
+
 
     private void jsonrequest() {
 
@@ -176,6 +249,7 @@ searchinput.addTextChangedListener(new TextWatcher() {
                 Toast.makeText(this,"Share",Toast.LENGTH_SHORT).show();
                 break;
         }
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.draw_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
